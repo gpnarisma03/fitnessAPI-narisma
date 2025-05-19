@@ -1,9 +1,16 @@
 const express = require('express');
 const mongoose = require('mongoose');
+const cors = require('cors');
 require('dotenv').config();
 
 const app = express();
 const port = process.env.PORT;
+const allowedOrigins = ['https://kk-fitness-app.vercel.app'];
+app.use(cors({
+  origin: allowedOrigins,
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  credentials: true,
+}));
 
 // Connect to MongoDB
 mongoose.connect(process.env.MONGODB_STRING)
